@@ -1,0 +1,6 @@
+# Database H2
+*.mv.db
+*.trace.db
+*.lock.db
+data/
+*.h2.db
