@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org Thymeleaf Thymeleaf  ">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title th:text="${title}"></title>
+  <link rel="stylesheet" href="/css/stylequiz.css" />
+  <script src="/js/quiz.js" defer></script>
+</head>
+<body>
+  <div th:if="${game != null}">
+    <p>Welcome, <span th:text="${game.getPlayer().username}"></span>!</p>
+    <p>Difficulty: <span th:text="${game.getPlayer().difficulty}"></span></p>
+    <p>Rounds: <span th:text="${game.attempts + 1}"></span> of 10</p>
+    <p>Time remaining: <span id="time">00:00</span></p>
+    <div class="container">
+      <p th:text="${domanda.testo}" class="question"></p>
+      <input type="hidden" id="difficulty" th:value="${game.getPlayer().difficulty}" />
+      <form th:action="@{/submit}" method="post">
+        <input type="hidden" name="correctAnswer"
+          th:value="${domanda.rispostaCorretta}"/>
+        <div class="options">
+          <div th:each="risposta, iterStat : ${domanda.risposte}">
+            <input type="radio" name="selectedAnswer"
+              th:id="'risposta-' + ${iterStat.index}"
+              th:value="${risposta}"
+              style="display: none"/>
+            <label
+              th:for="'risposta-' + ${iterStat.index}"
+              class="card"
+              th:corretto="${risposta == domanda.rispostaCorretta}">
+              <img th:src="${risposta}" alt="Bandiera" class="flag-option" />
+            </label>
+          </div>
+        </div>
+        <div id="next" style="display: none">
+          <button type="submit">Next</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

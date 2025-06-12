@@ -10,5 +10,6 @@ public interface CountryService {
     List<Country> getCountries();
 
     Domanda generaDomanda();
+    Domanda generaDomandaBandiere();
 
 }

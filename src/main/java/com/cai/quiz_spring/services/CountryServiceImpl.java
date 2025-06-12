@@ -40,5 +40,27 @@ public class CountryServiceImpl implements CountryService{
 
         return Domanda.fromCountry(countryName, correctCapital, wrongCapitals);
     }
+    @Override
+public Domanda generaDomandaBandiere() {
+    List<Country> all = repo.findAll();
+    Collections.shuffle(all);
+    
+    Country correct = all.get(0);  // paese corretto
+    String countryName = correct.getName();
+    String correctFlag = correct.getFlag();
+
+    List<String> wrongFlags = all.stream()
+        .filter(c -> !c.getAlphaCode().equals(correct.getAlphaCode()))
+        .map(Country::getFlag)
+        .distinct()
+        .limit(2)
+        .collect(Collectors.toList());
+
+    if (wrongFlags.size() < 2) {
+        throw new IllegalStateException("Non abbastanza bandiere uniche per creare la domanda.");
+    }
+
+    return Domanda.fromCountryBandiera(countryName, correctFlag, wrongFlags);
+}
 
 }

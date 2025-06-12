@@ -28,4 +28,14 @@ public class Domanda {
 
         return new Domanda(testo, rispostaCorretta, risposte);
     }
+    public static Domanda fromCountryBandiera(String countryName, String correctFlag, List<String> wrongFlags) {
+    String testo = "Qual è la bandiera di " + countryName + "?";
+
+    List<String> risposte = new ArrayList<>();
+    risposte.add(correctFlag);
+    risposte.addAll(wrongFlags);
+    Collections.shuffle(risposte);
+
+    return new Domanda(testo, correctFlag, risposte);
+}
 }

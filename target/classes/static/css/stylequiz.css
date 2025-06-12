@@ -1,5 +1,4 @@
-body,
-html {
+body, html {
   height: 100%;
   margin: 0;
   display: flex;
@@ -8,6 +7,7 @@ html {
   background-color: #ffcccb;
   font-family: Arial, sans-serif;
 }
+
 .container {
   text-align: center;
   background-color: #fff;
@@ -15,11 +15,13 @@ html {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .question {
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
 }
+
 .options {
   display: flex;
   flex-wrap: wrap;
@@ -27,31 +29,36 @@ html {
   gap: 20px;
 }
 
-input[type="radio"]:checked + .card {
-  border-color: #4caf50;
-  background-color: #e6ffe6;
-}
-
 .card {
-display: block;
-  background-color: cornflowerblue;
-  color: white;
+  display: block;
+  background-color: #f0f0f0; /* Initial background color is white */
   padding: 20px;
   border-radius: 10px;
   cursor: pointer;
   width: 200px;
   text-align: center;
   transition: background-color 0.3s;
+  border: 1px solid #525050; /* Optional: Add a subtle border for better visibility */
 }
+
+.card img {
+  width: 100%;
+  height: 70%;
+  border-radius: 10px;
+}
+
 .card:hover {
-  background-color: blue;
+  background-color: #44a08c; /* Light grey on hover for better user experience */
 }
+
 .correct {
   background-color: #4caf50 !important;
 }
+
 .incorrect {
   background-color: #f44336 !important;
 }
+
 .missed {
   background-color: orange;
   border: 2px dashed red;

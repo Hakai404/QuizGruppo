@@ -6,10 +6,11 @@
 </head>
 <body>
     <div class="content">
-    <h1>Quiz Result</h1>
-    <p>Congratulations, <span th:text="${game.player.username}"></span>!</p>
-    <p>Your final score is: <span th:text="${game.score}"></span> out of 10.</p>
-    <a th:href="@{/start}">Try again</a>
+        <h1>Quiz Result</h1>
+        <p>Congratulations, <span th:text="${game.player.username}"></span>!</p>
+        <p>Your final score is: <span th:text="${game.score}"></span> out of 10.</p>
+        <a th:href="@{/start}" class="retry-link">Try again</a>
+        <a th:href="@{/}" class="home-link">Return to Home</a>
     </div>
 </body>
 </html>

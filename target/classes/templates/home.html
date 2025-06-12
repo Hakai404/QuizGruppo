@@ -1,41 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/css/style.css" />
-    <script src="/js/script.js" defer></script>
-    <title>Quiz</title>
-  </head>
-  <body>
-    <header>
-      <h1>Chi vuol essere geografo?</h1>
-      <p>Metti alla prova la tua conoscenza!</p>
-    </header>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/js/script.js" defer></script>
+  <title>Quiz - Chi vuol essere geografo?</title>
+</head>
+<body>
+  <header>
+    <h1>Chi vuol essere geografo?</h1>
+    <p>Metti alla prova la tua conoscenza geografica!</p>
+  </header>
 
-    <nav>
-      <a href="#">Home</a>
-      <a href="#">Quiz</a>
-      <a href="#">Classifica</a>
-      <a href="#">Contatti</a>
-    </nav>
-    <div class="content">
-    <div class="hero">
-      <h1>Benvenuto!</h1>
-      <p>Scopri quiz divertenti e stimolanti su tantissimi argomenti.</p>
+  <nav>
+    <a href="/" class="active">Home</a>
+    <a th:href="@{/countries}">Esplora Paesi</a>
+    <a href="#">Classifica</a>
+  </nav>
+
+  <main class="content">
+    <section class="hero">
+      <h2>Benvenuto!</h2>
+      <p>Scopri quiz divertenti e stimolanti sul mondo e le sue bandiere.</p>
       <button onclick="openModal()">Inizia Ora</button>
-    </div>
+    </section>
 
+    <!-- Modal Quiz Mode Selection -->
     <div id="quizModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Scegli la modalità di quiz</h2>
-        <a class="quiz-option">Riconosci la bandiera</a>
+        <a th:href="@{/start-bandiera}" class="quiz-option">Riconosci la bandiera</a>
         <a th:href="@{/start}" class="quiz-option">Indovina la capitale</a>
-        <a class="quiz-option">Memory con le bandiere</a>
+        <a href="#" class="quiz-option disabled" title="Prossimamente...">Memory con le bandiere</a>
       </div>
     </div>
-    </div>
-    <footer></footer>
-  </body>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Quiz Geografico - Tutti i diritti riservati.</p>
+  </footer>
+</body>
 </html>
