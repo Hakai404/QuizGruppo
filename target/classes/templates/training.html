@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <script src="/js/script.js" defer></script>
+    <title>Training</title>
+</head>
+<body>
+    <div class="container">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Stato</th>
+                    <th>Capitale</th>
+                    <th>Bandiera</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr>
+                    <td th:text="${country.name}"></td>
+                    <td th:text="${country.capital}"></td>
+                    <td>
+                        <img th:src="${country.flag}" th:alt="${country.name + ' flag'}">
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="next-container" style="display:block; margin-top: 20px;">
+            <form method="get" action="/training">
+                <input type="hidden" name="index" th:value="${nextIndex}">
+                <button type="submit" id="nextBtn">Next</button>
+            </form>
+        </div>
+
+        <a th:href="@{/}">Torna alla home</a>
+
+    </div>
+</body>
+</html>

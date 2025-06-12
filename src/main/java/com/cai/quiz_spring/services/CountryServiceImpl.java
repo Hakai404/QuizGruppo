@@ -2,6 +2,7 @@ package com.cai.quiz_spring.services;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,15 @@ public class CountryServiceImpl implements CountryService{
                 .collect(Collectors.toList());
 
         return Domanda.fromCountry(countryName, correctCapital, wrongCapitals);
+    }
+
+    @Override
+    public Country getRandomCountry() {
+        List<Country> countries = getCountries();
+        Random random = new Random();
+        int randomIndex = random.nextInt(countries.size());
+        Country country = countries.get(randomIndex);
+        return country;
     }
 
 }

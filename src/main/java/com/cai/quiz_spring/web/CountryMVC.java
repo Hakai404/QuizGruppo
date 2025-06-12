@@ -3,19 +3,18 @@ package com.cai.quiz_spring.web;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.cai.quiz_spring.entities.Country;
 import com.cai.quiz_spring.entities.Domanda;
 import com.cai.quiz_spring.entities.GameSession;
 import com.cai.quiz_spring.entities.Player;
 import com.cai.quiz_spring.services.CountryService;
 
 import jakarta.servlet.http.HttpSession;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class CountryMVC {
@@ -96,5 +95,13 @@ public class CountryMVC {
         model.addAttribute("game", game);
         return "result";
     }
+
+    @GetMapping("/training")
+    public String training(Model m) {
+        Country country = service.getRandomCountry();
+        m.addAttribute("country", country);
+        return "training";
+    }
+    
 
 }

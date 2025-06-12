@@ -11,4 +11,6 @@ public interface CountryService {
 
     Domanda generaDomanda();
 
+    Country getRandomCountry();
+
 }
