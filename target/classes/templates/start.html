@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starting your quiz</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="content">
+    <form th:action="@{/start}" method="post" th:object="${player}" class="quiz-form">
+        <label>Scegli il tuo username: </label><br>
+        <input type="text" th:field="*{username}" required/><br>
+        <br><label>Scegli la difficoltà:</label>
+        <select th:field="*{difficulty}"><br>
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+        </select><br><br>
+        <button type="submit">Start</button>
+    </form>
+    </div>
+</body>
+</html>
