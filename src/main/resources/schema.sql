@@ -7,3 +7,12 @@ CREATE TABLE countries (
     capital VARCHAR(100) NOT NULL,
     flag VARCHAR(255)
 );
+
+CREATE TABLE IF NOT EXISTS games(
+    id int auto_increment primary key,
+    user_name varchar(255),
+    difficulty varchar(50),
+    score int,
+    attempts int,
+    modalita varchar(50)
+);

@@ -8,6 +8,7 @@ import com.cai.quiz_spring.entities.Domanda;
 import com.cai.quiz_spring.entities.GameSession;
 import com.cai.quiz_spring.entities.Player;
 import com.cai.quiz_spring.services.CountryService;
+import com.cai.quiz_spring.services.GameService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -22,6 +23,9 @@ public class CountryMVC {
 
     @Autowired
     private CountryService service;
+
+    @Autowired
+    private GameService serviceGame;
 
     @GetMapping("countries")
     public String countries(Model m) {
@@ -44,7 +48,8 @@ public class CountryMVC {
     @PostMapping("/start")
     public String postInfo(@ModelAttribute Player player, HttpSession session) {
         GameSession game = new GameSession();
-        game.setPlayer(player);
+        game.setUserName(player.getUsername());
+        game.setDifficulty(player.getDifficulty());
 
         session.setAttribute("game", game);
         return "redirect:/quiz";
@@ -61,7 +66,7 @@ public class CountryMVC {
         Domanda domanda = service.generaDomanda();
         m.addAttribute("game", game);
         m.addAttribute("domanda", domanda);
-        m.addAttribute("title", "Quiz sui Paesi del Mondo");
+        m.addAttribute("title", "Quiz sulle capitali");
         return "quiz";
     }
 
@@ -86,6 +91,7 @@ public class CountryMVC {
             return "redirect:/quiz";
         } else {
             m.addAttribute("game", game);
+            serviceGame.addGame(game.getUserName(), game.getScore(), game.getAttempts(), "Quiz", game.getDifficulty());
             return "result";
         }
     }
@@ -96,5 +102,18 @@ public class CountryMVC {
         model.addAttribute("game", game);
         return "result";
     }
+
+    @GetMapping("/leaderboard")
+    public String showClassifica(Model m) {
+        m.addAttribute("leaderboard", serviceGame.getGamesOrderScore());
+        return "leaderboard";
+    }
+
+    @GetMapping("/credits")
+    public String showCredits() {
+        return "credits";
+    }
+    
+    
 
 }

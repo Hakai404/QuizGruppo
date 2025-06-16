@@ -4,31 +4,77 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title th:text="${title}"></title>
-    <link rel="stylesheet" href="/css/stylequiz.css" />
+    <link rel="stylesheet" href="/css/style.css" />
     <script src="/js/quiz.js" defer></script>
   </head>
   <body>
+     <nav>
+      <a th:href="@{/}">Home</a>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Quiz</a>
+        <div class="dropdown-content">
+          <a th:href="@{/start}">Capitali</a>
+          <a th:href="@{/quiz/bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Classifica</a>
+        <div class="dropdown-content">
+          <a th:href="@{/leaderboard}">Capitali</a>
+          <a th:href="@{/leaderboard/bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <a th:href="@{/credits}">Credits</a>
+    </nav>
     <div th:if="${game != null}">
-      <p>Welcome, <span th:text="${game.getPlayer().username}"></span>!</p>
-      <p>Difficulty: <span th:text="${game.getPlayer().difficulty}"></span></p>
-      <p>Rounds: <span th:text="${game.attempts + 1}"></span> of 10</p>
-      <p>Time remaining: <span id="time">00:00</span></p>
+      <!-- Sostituisci la sezione con le 4 <p> con questo: -->
+      <div class="game-info">
+        <div class="game-info-item">
+          <span class="game-info-label">Giocatore</span>
+          <span class="game-info-value username" th:text="${game.userName}"
+            >Player</span
+          >
+        </div>
+
+        <div class="game-info-item">
+          <span class="game-info-label">Difficoltà</span>
+          <span class="game-info-value difficulty" th:text="${game.difficulty}">Medium</span>
+        </div>
+
+        <div class="game-info-item">
+          <span class="game-info-label">Round</span>
+          <span class="game-info-value rounds">
+            <span th:text="${game.attempts + 1}"></span> di 10</span>
+        </div>
+
+        <div class="game-info-item">
+          <span class="game-info-label">Tempo</span>
+          <span class="game-info-value timer" id="time">00:00</span>
+        </div>
+      </div>
       <div class="container">
         <p th:text="${domanda.testo}" class="question"></p>
-        <input type="hidden" id="difficulty" th:value="${game.getPlayer().difficulty}" />
+        <input type="hidden" id="difficulty" th:value="${game.difficulty}" />
         <form th:action="@{/submit}" method="post">
-          <input type="hidden" name="correctAnswer"
-            th:value="${domanda.rispostaCorretta}"/>
+          <input
+            type="hidden"
+            name="correctAnswer"
+            th:value="${domanda.rispostaCorretta}"
+          />
           <div class="options">
             <div th:each="risposta, iterStat : ${domanda.risposte}">
-              <input type="radio" name="selectedAnswer"
+              <input
+                type="radio"
+                name="selectedAnswer"
                 th:id="'risposta-' + ${iterStat.index}"
                 th:value="${risposta}"
-                style="display: none"/>
+                style="display: none"
+              />
               <label
                 th:for="'risposta-' + ${iterStat.index}"
                 class="card"
-                th:corretto="${risposta == domanda.rispostaCorretta}">
+                th:corretto="${risposta == domanda.rispostaCorretta}"
+              >
                 <span th:text="${risposta}"></span>
               </label>
             </div>

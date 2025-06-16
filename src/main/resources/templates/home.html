@@ -14,10 +14,22 @@
     </header>
 
     <nav>
-      <a href="#">Home</a>
-      <a href="#">Quiz</a>
-      <a href="#">Classifica</a>
-      <a href="#">Contatti</a>
+      <a th:href="@{/}">Home</a>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Quiz</a>
+        <div class="dropdown-content">
+          <a th:href="@{/start}">Capitali</a>
+          <a th:href="@{/quiz/bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Classifica</a>
+        <div class="dropdown-content">
+          <a th:href="@{/leaderboard}">Capitali</a>
+          <a th:href="@{/leaderboard/bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <a th:href="@{/credits}">Credits</a>
     </nav>
     <div class="content">
     <div class="hero">
@@ -32,7 +44,6 @@
         <h2>Scegli la modalità di quiz</h2>
         <a class="quiz-option">Riconosci la bandiera</a>
         <a th:href="@{/start}" class="quiz-option">Indovina la capitale</a>
-        <a class="quiz-option">Memory con le bandiere</a>
       </div>
     </div>
     </div>

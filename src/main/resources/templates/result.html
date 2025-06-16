@@ -5,11 +5,32 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+     <nav>
+      <a th:href="@{/}">Home</a>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Quiz</a>
+        <div class="dropdown-content">
+          <a th:href="@{/start}">Capitali</a>
+          <a th:href="@{/quiz/bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Classifica</a>
+        <div class="dropdown-content">
+          <a th:href="@{/leaderboard}">Capitali</a>
+          <a th:href="@{/leaderboard/bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <a th:href="@{/credits}">Credits</a>
+    </nav>
     <div class="content">
-    <h1>Quiz Result</h1>
-    <p>Congratulations, <span th:text="${game.player.username}"></span>!</p>
-    <p>Your final score is: <span th:text="${game.score}"></span> out of 10.</p>
-    <a th:href="@{/start}">Try again</a>
+    <div class="thanks-section">
+        <h2>🎉 Quiz Completato! 🎉</h2>
+        <p>Congratulazioni, <span class="username-highlight" th:text="${game.userName}"></span>!</p>
+        <p>Il tuo punteggio finale è: <span class="score-highlight" th:text="${game.score}"></span> su 10.</p>
+        <p>Grazie per aver giocato al nostro quiz! Speriamo sia stato divertente e che abbia imparato qualcosa di nuovo.</p>
+        <a th:href="@{/start}" class="play-again-btn"> Gioca di Nuovo</a>
     </div>
+</div>
 </body>
 </html>

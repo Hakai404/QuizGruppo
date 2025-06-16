@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credits</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+      <h1>Chi vuol essere geografo?</h1>
+      <p>Metti alla prova la tua conoscenza!</p>
+    </header>
+
+     <nav>
+      <a th:href="@{/}">Home</a>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Quiz</a>
+        <div class="dropdown-content">
+          <a th:href="@{/start}">Capitali</a>
+          <a th:href="@{/quiz/bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Classifica</a>
+        <div class="dropdown-content">
+          <a th:href="@{/leaderboard}">Capitali</a>
+          <a th:href="@{/leaderboard/bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <a th:href="@{/credits}">Credits</a>
+    </nav>
+
+    <div class="content">
+        <section class="credits-intro">
+            <h1>Credits</h1>
+            <p>Un progetto realizzato con passione e dedizione</p>
+            <p>Dietro questo incredibile gioco di quiz c'è un team di giovani sviluppatori talentuosi che hanno unito le loro competenze per creare un'esperienza di gioco unica e coinvolgente.</p>
+        </section>
+
+        <section class="team-section">
+            <h2>Il nostro Team</h2>
+            <div class="team-grid">
+                <div class="developer-card">
+                    <div class="developer-avatar">AB</div>
+                    <div class="developer-name">Artem Bulgakov</div>
+                    <div class="developer-role">Lead Developer & Backend Architect</div>
+                    <div class="developer-description">
+                        Artem è il cervello tecnico del progetto. Con la sua esperienza nello sviluppo backend e nell'architettura software, ha creato il sistema robusto che gestisce tutte le funzionalità del quiz. La sua passione per il codice pulito e le performance ottimali si riflette in ogni aspetto dell'applicazione.
+                    </div>
+                </div>
+
+                <div class="developer-card">
+                    <div class="developer-avatar">MC</div>
+                    <div class="developer-name">Matteo Cai</div>
+                    <div class="developer-role">Frontend Designer & UX Specialist</div>
+                    <div class="developer-description">
+                        Matteo ha trasformato l'idea in realtà visiva. Con il suo occhio attento per il design e l'esperienza utente, ha creato un'interfaccia elegante e intuitiva. La sua creatività e attenzione ai dettagli rendono ogni interazione un piacere per gli utenti.
+                    </div>
+                </div>
+
+                <div class="developer-card">
+                    <div class="developer-avatar">EA</div>
+                    <div class="developer-name">Elisa Andreoli</div>
+                    <div class="developer-role">Game Logic Developer & Quality Assurance</div>
+                    <div class="developer-description">
+                        Elisa è il maestro della logica di gioco. Ha sviluppato tutti gli algoritmi che rendono il quiz coinvolgente e bilanciato. La sua dedizione ai test e alla qualità assicura che ogni funzionalità funzioni perfettamente, garantendo un'esperienza di gioco fluida e divertente.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="thanks-section">
+            <h2>Grazie per aver giocato!</h2>
+            <p>Speriamo che tu ti sia divertito con il nostro quiz. Il nostro obiettivo è sempre quello di migliorare e offrire la migliore esperienza possibile. Continua a giocare e sfida i tuoi amici!</p>
+            <a th:href="@{/}" class="play-again-btn">Torna alla Home</a>
+        </section>
+    </div>
+
+    <footer></footer>
+</body>
+</html>

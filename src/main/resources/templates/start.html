@@ -7,6 +7,24 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+     <nav>
+      <a th:href="@{/}">Home</a>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Quiz</a>
+        <div class="dropdown-content">
+          <a th:href="@{/start}">Capitali</a>
+          <a th:href="@{/quiz/bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Classifica</a>
+        <div class="dropdown-content">
+          <a th:href="@{/leaderboard}">Capitali</a>
+          <a th:href="@{/leaderboard/bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <a th:href="@{/credits}">Credits</a>
+    </nav>
     <div class="content">
     <form th:action="@{/start}" method="post" th:object="${player}" class="quiz-form">
         <label>Scegli il tuo username: </label><br>
