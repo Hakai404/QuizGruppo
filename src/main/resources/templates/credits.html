@@ -17,15 +17,15 @@
       <div class="dropdown">
         <a href="#" class="dropdown-toggle">Quiz</a>
         <div class="dropdown-content">
-          <a th:href="@{/start}">Capitali</a>
-          <a th:href="@{/quiz/bandiere}">Bandiere</a>
+          <a th:href="@{/start?tipo=Quiz}">Capitali</a>
+          <a th:href="@{/start?tipo=Bandiere}">Bandiere</a>
         </div>
       </div>
       <div class="dropdown">
         <a href="#" class="dropdown-toggle">Classifica</a>
         <div class="dropdown-content">
           <a th:href="@{/leaderboard}">Capitali</a>
-          <a th:href="@{/leaderboard/bandiere}">Bandiere</a>
+          <a th:href="@{/leaderboard_bandiera}">Bandiere</a>
         </div>
       </div>
       <a th:href="@{/credits}">Credits</a>

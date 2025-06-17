@@ -26,7 +26,7 @@ public class CountryServiceImpl implements CountryService{
     public Domanda generaDomanda() {
         List<Country> all = repo.findAll();
         Collections.shuffle(all);
-        Country correct = all.get(0);
+        Country correct = all.get(0); //Paese corretto
 
         String correctCapital = correct.getCapital();
         String countryName = correct.getName();
@@ -39,6 +39,33 @@ public class CountryServiceImpl implements CountryService{
                 .collect(Collectors.toList());
 
         return Domanda.fromCountry(countryName, correctCapital, wrongCapitals);
+    }
+
+    @Override
+    public Domanda generaDomandaBandiere(String difficolta) {
+        int numeroOpzioni;
+    if (difficolta.equals("hard")) {
+        numeroOpzioni = 8;
+    } else if (difficolta.equals("medium")){
+        numeroOpzioni = 5;
+    } else {
+        numeroOpzioni = 2;
+    }
+    List<Country> all = repo.findAll();
+    Collections.shuffle(all);
+    Country correct = all.get(0); //Paese corretto
+
+    String countryName = correct.getName();
+    String correctFlag = correct.getFlag();
+
+    List<String> wrongFlags = all.stream()
+        .filter(c -> !c.getAlphaCode().equals(correct.getAlphaCode()))
+        .map(Country::getFlag)
+        .distinct()
+        .limit(numeroOpzioni)
+        .collect(Collectors.toList());
+
+    return Domanda.fromCountryBandiera(countryName, correctFlag, wrongFlags);
     }
 
 }

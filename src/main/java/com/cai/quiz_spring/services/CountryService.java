@@ -11,4 +11,6 @@ public interface CountryService {
 
     Domanda generaDomanda();
 
+    Domanda generaDomandaBandiere(String difficolta);
+
 }

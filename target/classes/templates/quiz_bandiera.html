@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title th:text="${title}">Quiz Bandiere</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/js/quiz_bandiere.js" defer></script>
+</head>
+<body>
+    <nav>
+      <a th:href="@{/}">Home</a>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Quiz</a>
+        <div class="dropdown-content">
+          <a th:href="@{/start?tipo=Quiz}">Capitali</a>
+          <a th:href="@{/start?tipo=Bandiere}">Bandiere</a>
+        </div>
+      </div>
+      <div class="dropdown">
+        <a href="#" class="dropdown-toggle">Classifica</a>
+        <div class="dropdown-content">
+          <a th:href="@{/leaderboard}">Capitali</a>
+          <a th:href="@{/leaderboard_bandiera}">Bandiere</a>
+        </div>
+      </div>
+      <a th:href="@{/credits}">Credits</a>
+    </nav>
+    <div class="content">
+      <div th:if="${game != null}">
+        <div class="game-info">
+          <div class="game-info-item">
+            <span class="game-info-label">Giocatore</span>
+            <span class="game-info-value username" th:text="${game.userName}">Player</span>
+          </div>
+          <div class="game-info-item">
+            <span class="game-info-label">Difficoltà</span>
+            <span class="game-info-value difficulty" th:text="${game.difficulty}">Medio</span>
+          </div>
+          <div class="game-info-item">
+            <span class="game-info-label">Round</span>
+            <span class="game-info-value rounds" th:text="${game.attempts + 1} + ' di 10'">1 di 10</span>
+          </div>
+          <div class="game-info-item">
+            <span class="game-info-label">Tempo</span>
+            <span class="game-info-value timer" id="time">00:00</span>
+          </div>
+        </div>
+        <div class="container">
+          <p th:text="${domanda.testo}" class="question">Di quale paese è questa bandiera?</p>
+          
+          <form th:action="@{/submit}" method="post">
+            <input type="hidden" name="correctAnswer" th:value="${domanda.rispostaCorretta}"/>
+            
+            <div class="options">
+              <div th:each="risposta, iterStat : ${domanda.risposte}">
+                <input type="radio" name="selectedAnswer"
+                  th:id="'risposta-' + ${iterStat.index}"
+                  th:value="${risposta}"
+                  style="display: none"/>
+                <label
+                  th:for="'risposta-' + ${iterStat.index}"
+                  class="card flag-card"
+                  th:data-correct="${risposta == domanda.rispostaCorretta}">
+                  <img th:src="${risposta}" alt="Bandiera" class="flag-option" />
+                </label>
+              </div>
+            </div>
+            
+            <div id="next" style="display: none">
+              <button type="submit">Next</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

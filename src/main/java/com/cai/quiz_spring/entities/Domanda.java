@@ -16,16 +16,24 @@ public class Domanda {
 
     public static Domanda fromCountry(String countryName, String correctCapital, List<String> wrongCapitals) {
         String testo = "What is the capital of " + countryName + "?";
-        String rispostaCorretta = correctCapital;
-        
-        // Create a mutable list from the correct capital and wrong capitals
+
         List<String> risposte = new ArrayList<>();
-        risposte.add(rispostaCorretta);
+        risposte.add(correctCapital);
         risposte.addAll(wrongCapitals);
 
-        // Shuffle the mutable list
         Collections.shuffle(risposte);
 
-        return new Domanda(testo, rispostaCorretta, risposte);
+        return new Domanda(testo, correctCapital, risposte);
+    }
+
+    public static Domanda fromCountryBandiera(String countryName, String correctFlag, List<String> wrongFlags) {
+        String testo = "What is the flag of " + countryName + "?";
+
+        List<String> risposte = new ArrayList<>();
+        risposte.add(correctFlag);
+        risposte.addAll(wrongFlags);
+        Collections.shuffle(risposte);
+
+        return new Domanda(testo, correctFlag, risposte);
     }
 }

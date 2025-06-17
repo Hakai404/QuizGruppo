@@ -18,15 +18,15 @@
       <div class="dropdown">
         <a href="#" class="dropdown-toggle">Quiz</a>
         <div class="dropdown-content">
-          <a th:href="@{/start}">Capitali</a>
-          <a th:href="@{/quiz/bandiere}">Bandiere</a>
+          <a th:href="@{/start?tipo=Quiz}">Capitali</a>
+          <a th:href="@{/start?tipo=Bandiere}">Bandiere</a>
         </div>
       </div>
       <div class="dropdown">
         <a href="#" class="dropdown-toggle">Classifica</a>
         <div class="dropdown-content">
           <a th:href="@{/leaderboard}">Capitali</a>
-          <a th:href="@{/leaderboard/bandiere}">Bandiere</a>
+          <a th:href="@{/leaderboard_bandiera}">Bandiere</a>
         </div>
       </div>
       <a th:href="@{/credits}">Credits</a>
@@ -42,8 +42,8 @@
       <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
         <h2>Scegli la modalità di quiz</h2>
-        <a class="quiz-option">Riconosci la bandiera</a>
-        <a th:href="@{/start}" class="quiz-option">Indovina la capitale</a>
+        <a th:href="@{/start?tipo=Bandiere}" class="quiz-option">Riconosci la bandiera</a>
+        <a th:href="@{/start?tipo=Quiz}" class="quiz-option">Indovina la capitale</a>
       </div>
     </div>
     </div>

@@ -57,17 +57,20 @@
           ></span>
         </div>
 
+        <!-- Nome giocatore -->
         <div class="player-col">
           <span class="player-name" th:text="${result.userName}"
             >Giocatore</span
           >
         </div>
 
+        <!-- Punteggio -->
         <div class="score-col">
           <span class="score-value" th:text="${result.score}">0</span>
           <span class="score-label">punti</span>
         </div>
 
+        <!-- Difficoltà -->
         <div class="difficulty-col">
           <span
             class="difficulty-badge"
@@ -78,6 +81,7 @@
         </div>
       </div>
 
+      <!-- Messaggio se non ci sono risultati -->
       <div th:if="${#lists.isEmpty(leaderboard)}" class="no-results">
         <p>Nessun risultato trovato. Sii il primo a giocare!</p>
         <a th:href="@{/}" class="cta-button">Gioca Ora</a>

@@ -10,5 +10,7 @@ public interface GameService {
 
     List<GameSession> getGamesOrderScore();
 
+    List<GameSession> getFlagGamesOrderScore();
+
     void addGame(String userName, int score, int attempts, String modalita, String difficulty);
 }

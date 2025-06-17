@@ -40,19 +40,27 @@ public class CountryMVC {
     }
 
     @GetMapping("/start")
-    public String start(Model m) {
+    public String start(Model m, HttpSession session, @RequestParam(value = "tipo", required = false) String tipo) {
+        session.removeAttribute("game");
         m.addAttribute("player", new Player());
+        m.addAttribute("tipo", tipo);
         return "start";
     }
 
     @PostMapping("/start")
-    public String postInfo(@ModelAttribute Player player, HttpSession session) {
+    public String postInfo(@ModelAttribute Player player, HttpSession session, @RequestParam("tipo") String tipo) {
         GameSession game = new GameSession();
         game.setUserName(player.getUsername());
         game.setDifficulty(player.getDifficulty());
+        game.setModalita(tipo);
 
         session.setAttribute("game", game);
-        return "redirect:/quiz";
+
+        if (tipo.equals("Bandiere")){
+            return "redirect:/quiz_bandiera";
+        } else {
+            return "redirect:/quiz";
+        }
     }
 
     @GetMapping("/quiz")
@@ -68,6 +76,20 @@ public class CountryMVC {
         m.addAttribute("domanda", domanda);
         m.addAttribute("title", "Quiz sulle capitali");
         return "quiz";
+    }
+
+    @GetMapping("/quiz_bandiera")
+    public String quizBandiera(Model m, HttpSession session) {
+        GameSession game = (GameSession) session.getAttribute("game");
+        if (game == null || game.getAttempts() >= 10) {
+            return "redirect:/result";
+        }
+
+        Domanda domanda = service.generaDomandaBandiere(game.getDifficulty());
+        m.addAttribute("game", game);
+        m.addAttribute("domanda", domanda);
+        m.addAttribute("title", "Quiz di Bandiere");
+        return "quiz_bandiera";
     }
 
     @PostMapping("/submit")
@@ -87,11 +109,13 @@ public class CountryMVC {
             game.incrementAttempts();
         }
 
-        if (game.getAttempts() < 10) {
+        if (game.getAttempts() < 10 && game.getModalita().equals("Bandiere")) {
+            return "redirect:/quiz_bandiera";
+        } else if (game.getAttempts() < 10 && game.getModalita().equals("Quiz")) {
             return "redirect:/quiz";
         } else {
             m.addAttribute("game", game);
-            serviceGame.addGame(game.getUserName(), game.getScore(), game.getAttempts(), "Quiz", game.getDifficulty());
+            serviceGame.addGame(game.getUserName(), game.getScore(), game.getAttempts(), game.getModalita(), game.getDifficulty());
             return "result";
         }
     }
@@ -107,6 +131,12 @@ public class CountryMVC {
     public String showClassifica(Model m) {
         m.addAttribute("leaderboard", serviceGame.getGamesOrderScore());
         return "leaderboard";
+    }
+
+    @GetMapping("/leaderboard_bandiera")
+    public String showClassificaBandiere(Model m) {
+        m.addAttribute("leaderboard", serviceGame.getFlagGamesOrderScore());
+        return "leaderboard_bandiera";
     }
 
     @GetMapping("/credits")

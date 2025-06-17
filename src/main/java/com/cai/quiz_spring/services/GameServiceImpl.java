@@ -36,6 +36,16 @@ public class GameServiceImpl implements GameService {
     public List<GameSession> getGamesOrderScore() {
         return repo.findAll()
                    .stream()
+                   .filter(g -> g.getModalita().equals("Quiz"))
+                   .sorted((g1, g2) -> Integer.compare(g2.getScore(), g1.getScore())) 
+                   .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<GameSession> getFlagGamesOrderScore() {
+        return repo.findAll()
+                   .stream()
+                   .filter(g -> g.getModalita().equals("Bandiere"))
                    .sorted((g1, g2) -> Integer.compare(g2.getScore(), g1.getScore())) 
                    .collect(Collectors.toList());
     }
