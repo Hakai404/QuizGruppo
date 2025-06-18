@@ -802,6 +802,62 @@ nav a:hover {
   margin-bottom: 1.5rem;
 }
 
+.training-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .training-table thead {
+      background: linear-gradient(135deg, #ff6b6b, #ffa726);
+      color: white;
+    }
+
+    .training-table th {
+      padding: 1.5rem 1rem;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .training-table td {
+      padding: 1.5rem 1rem;
+      text-align: center;
+      border-bottom: 1px solid #ecf0f1;
+      transition: all 0.3s ease;
+    }
+
+    .training-table tbody tr:hover {
+      background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .training-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .training-header {
+      padding-bottom: 2rem;
+    }
+
+    .country-name {
+      font-weight: bold;
+      color: #2c3e50;
+      font-size: 1.1rem;
+    }
+
+    .capital-name {
+      font-weight: 600;
+      color: #e74c3c;
+      font-size: 1.1rem;
+    }
+    
 /* ===== CREDITS STYLES ===== */
 .credits-intro {
   text-align: center;

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import com.cai.quiz_spring.entities.Country;
 import com.cai.quiz_spring.entities.Domanda;
 import com.cai.quiz_spring.entities.GameSession;
 import com.cai.quiz_spring.entities.Player;
@@ -41,6 +42,9 @@ public class CountryMVC {
 
     @GetMapping("/start")
     public String start(Model m, HttpSession session, @RequestParam(value = "tipo", required = false) String tipo) {
+        if (tipo == null){
+            return "redirect:/";
+        }
         session.removeAttribute("game");
         m.addAttribute("player", new Player());
         m.addAttribute("tipo", tipo);
@@ -67,7 +71,10 @@ public class CountryMVC {
     public String quiz(Model m, HttpSession session) {
 
         GameSession game = (GameSession) session.getAttribute("game");
-        if (game == null || game.getAttempts() >= 10) {
+
+        if (game == null){
+            return "redirect:/";
+        } else if (game.getAttempts() >= 10) {
             return "redirect:/result";
         }
 
@@ -81,7 +88,9 @@ public class CountryMVC {
     @GetMapping("/quiz_bandiera")
     public String quizBandiera(Model m, HttpSession session) {
         GameSession game = (GameSession) session.getAttribute("game");
-        if (game == null || game.getAttempts() >= 10) {
+        if (game == null){
+            return "redirect:/";
+        } else if (game.getAttempts() >= 10) {
             return "redirect:/result";
         }
 
@@ -144,6 +153,12 @@ public class CountryMVC {
         return "credits";
     }
     
+    @GetMapping("/training")
+    public String training(Model m) {
+        Country country = service.getRandomCountry();
+        m.addAttribute("country", country);
+        return "training";
+    }
     
 
 }

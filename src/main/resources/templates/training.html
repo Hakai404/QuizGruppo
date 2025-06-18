@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="/js/script.js" defer></script>
+  <title>Training</title>
+</head>
+<body>
+
+  <header>
+    <h1>Allenamento Geografico</h1>
+    <p>Impara le capitali e le bandiere del mondo!</p>
+  </header>
+
+  <nav>
+    <a href="/">Home</a>
+    <a href="/training">Training</a>
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">Quiz</a>
+      <div class="dropdown-content">
+        <a href="/start?tipo=Quiz">Capitali</a>
+        <a href="/start?tipo=Bandiere">Bandiere</a>
+      </div>
+    </div>
+    <div class="dropdown">
+      <a href="#" class="dropdown-toggle">Classifica</a>
+      <div class="dropdown-content">
+        <a href="/leaderboard">Capitali</a>
+        <a href="/leaderboard_bandiera">Bandiere</a>
+      </div>
+    </div>
+    <a href="/credits">Credits</a>
+  </nav>
+
+  <div class="container">
+    <div class="training-header">
+      <h2>Modalità Training</h2>
+    </div>
+    <table class="training-table">
+      <thead>
+        <tr>
+          <th>Stato</th>
+          <th>Capitale</th>
+          <th>Bandiera</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="country-name" th:text="${country.name}">Nome Paese</td>
+          <td class="capital-name" th:text="${country.capital}">Nome Capitale</td>
+          <td>
+            <img th:src="${country.flag}" th:alt="${country.name + ' flag'}" class="flag-option">
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div id="next" class="next-container">
+      <form method="get" action="/training">
+        <input type="hidden" name="index" th:value="${nextIndex}">
+        <button type="submit">Prossimo Paese</button>
+      </form>
+    </div>
+  </div>
+
+  <footer></footer>
+
+</body>
+</html>
